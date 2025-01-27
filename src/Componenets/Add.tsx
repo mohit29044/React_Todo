@@ -9,6 +9,7 @@ function Add() {
   function addTask() {
     if (userRef.current && userRef.current.value) {
       const inputValue = userRef.current.value;
+      userRef.current.value = "";
       if (inputValue) {
         dispatch(AddNew(inputValue));
       }
