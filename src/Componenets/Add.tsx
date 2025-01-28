@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AddNew } from "../App/Slices/CRUD";
 
 function Add() {
@@ -47,16 +47,19 @@ function Add() {
       <div className="relative">
         <select
           name=""
-          id=""
+          id="dropdown"
           className="w-36 bg-[#C4BABA5E] backdrop-blur-lg text-gray-600 border-none rounded-md"
         >
-          <option value="" className="bg-[#C4BABA5E] backdrop-blur-lg p">
+          <option value="All" className="bg-[#C4BABA5E] backdrop-blur-lg p">
             All
           </option>
-          <option value="" className="bg-[#C4BABA5E] backdrop-blur-lg">
+          <option value="Completed" className="bg-[#C4BABA5E] backdrop-blur-lg">
             Completed
           </option>
-          <option value="" className="bg-[#C4BABA5E] backdrop-blur-lg">
+          <option
+            value="Incompleted"
+            className="bg-[#C4BABA5E] backdrop-blur-lg"
+          >
             Incompleted
           </option>
         </select>

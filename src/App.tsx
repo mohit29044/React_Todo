@@ -1,4 +1,5 @@
 import Add from "./Componenets/Add";
+import DisplyTask from "./Componenets/DisplyTask";
 import Search from "./Componenets/Search";
 import Video from "./Componenets/Video";
 function App() {
@@ -13,8 +14,11 @@ function App() {
           <div className="mt-7">
             <Add />
           </div>
-          <div className="mt-7">
+          <div className="mt-5">
             <Search />
+          </div>
+          <div>
+            <DisplyTask />
           </div>
         </div>
       </div>

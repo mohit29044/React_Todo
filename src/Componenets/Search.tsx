@@ -8,7 +8,7 @@ function Search() {
         name=""
         id=""
         placeholder="Search Existing Task"
-        className="py-2 px-3 bg-[#C4BABA5E] backdrop-blur-lg w-80 rounded-full pr-10" // Add padding-right to create space for the icon
+        className="py-2 px-3 bg-[#C4BABA5E] backdrop-blur-lg w-80 rounded-full pr-10"
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
