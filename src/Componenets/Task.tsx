@@ -16,6 +16,7 @@ function Task(todo: AddType) {
       <div className="flex items-center space-x-3">
         <input
           type="checkbox"
+          checked={todo.isCompleted}
           className="w-4 h-4 cursor-pointer"
           onChange={() => {
             dispatch(showStatus(todo.id));
@@ -27,7 +28,14 @@ function Task(todo: AddType) {
             }
           }}
         />
-        <button className="group" onClick={() => dispatch(Delete(todo.id))}>
+        <button
+          className="group"
+          onClick={() => {
+            dispatch(Delete(todo.id));
+            const deleteToast = () => toast("Deleted Successfully");
+            deleteToast();
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -38,7 +46,7 @@ function Task(todo: AddType) {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="lucide lucide-trash cursor-pointer stroke-gray-500 group-hover:stroke-red-500 transition-colors"
+            className="lucide lucide-trash cursor-pointer stroke-gray-900 group-hover:stroke-red-500 transition-colors"
           >
             <path d="M3 6h18" />
             <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />

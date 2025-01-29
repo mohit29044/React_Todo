@@ -5,7 +5,6 @@ export interface AddType {
   value: string;
   id: number | string;
   isCompleted: boolean;
-  markCompleted: boolean;
 }
 interface TodoState {
   todo: AddType[];
@@ -23,7 +22,6 @@ export const AddSlice = createSlice({
       const todo: AddType = {
         id: id,
         isCompleted: false,
-        markCompleted: false,
         value: action.payload,
       };
 
@@ -36,7 +34,6 @@ export const AddSlice = createSlice({
       const todo = state.todo.find((todo) => todo.id === action.payload);
       if (todo) {
         todo.isCompleted = !todo.isCompleted;
-        todo.markCompleted = !todo.markCompleted;
       }
     },
   },

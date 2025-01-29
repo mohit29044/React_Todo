@@ -1,10 +1,15 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { AddNew } from "../App/Slices/CRUD";
+import { filter } from "../App/Slices/Filter";
+import { toast } from "react-toastify";
 
 function Add() {
   const userRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
+  function dropdownval(e: React.ChangeEvent<HTMLSelectElement>) {
+    dispatch(filter(e.target.value));
+  }
 
   function addTask() {
     if (userRef.current && userRef.current.value) {
@@ -12,6 +17,8 @@ function Add() {
       userRef.current.value = "";
       if (inputValue) {
         dispatch(AddNew(inputValue));
+        const add = () => toast("Added Successfully");
+        add();
       }
     }
   }
@@ -49,6 +56,7 @@ function Add() {
           name=""
           id="dropdown"
           className="w-36 bg-[#C4BABA5E] backdrop-blur-lg text-gray-600 border-none rounded-md"
+          onChange={dropdownval}
         >
           <option value="All" className="bg-[#C4BABA5E] backdrop-blur-lg p">
             All
