@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../App/Store.ts";
+import { searchTodo } from "../App/Slices/CRUD.ts";
 
 function Search() {
+  const dispatch = useDispatch();
+  function handle(e: React.ChangeEvent<HTMLInputElement>) {
+    dispatch(searchTodo(e.target?.value));
+  }
   return (
     <div className="relative">
       <input
@@ -9,6 +16,7 @@ function Search() {
         id=""
         placeholder="Search Existing Task"
         className="py-2 px-3 bg-[#C4BABA5E] backdrop-blur-lg w-80 rounded-full pr-10"
+        onChange={handle}
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -28,5 +36,4 @@ function Search() {
     </div>
   );
 }
-
 export default Search;

@@ -22,6 +22,9 @@ function App() {
           </div>
         </div>
       </div>
+      <button className="top-12 right-12 absolute z-0 text-white hover:cursor-pointer ">
+        ABC
+      </button>
     </>
   );
 }

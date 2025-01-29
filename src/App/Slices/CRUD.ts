@@ -8,9 +8,11 @@ export interface AddType {
 }
 interface TodoState {
   todo: AddType[];
+  searchResult: AddType[];
 }
 const initialState: TodoState = {
   todo: [],
+  searchResult: [],
 };
 
 export const AddSlice = createSlice({
@@ -36,7 +38,12 @@ export const AddSlice = createSlice({
         todo.isCompleted = !todo.isCompleted;
       }
     },
+    searchTodo: (state, action: PayloadAction<string>) => {
+      state.searchResult = state.todo.filter(
+        (todo) => todo.value.toLowerCase() === action.payload.toLowerCase()
+      );
+    },
   },
 });
-export const { AddNew, Delete, showStatus } = AddSlice.actions;
+export const { AddNew, Delete, showStatus, searchTodo } = AddSlice.actions;
 export default AddSlice.reducer;
