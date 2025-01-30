@@ -1,6 +1,5 @@
-import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../App/Store.ts";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { searchTodo } from "../App/Slices/CRUD.ts";
 
 function Search() {
