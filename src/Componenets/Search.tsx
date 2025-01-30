@@ -15,7 +15,7 @@ function Search() {
         name=""
         id=""
         placeholder="Search Existing Task"
-        className="py-2 px-3 bg-[#C4BABA5E] backdrop-blur-lg w-80 rounded-full pr-10"
+        className="py-2 px-3 bg-[#C4BABA5E] text-white placeholder:text-white backdrop-blur-lg w-80 rounded-full pr-10"
         onChange={handle}
       />
       <svg
@@ -28,7 +28,7 @@ function Search() {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600"
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-whi"
       >
         <circle cx="11" cy="11" r="8" />
         <line x1="21" y1="21" x2="15" y2="15" />

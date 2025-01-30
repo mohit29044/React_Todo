@@ -1,22 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AddType, Delete, showStatus } from "./../App/Slices/CRUD.ts";
+import {
+  AddType,
+  Delete,
+  showStatus,
+  editValue,
+} from "./../App/Slices/CRUD.ts";
 import { toast } from "react-toastify";
-import type { RootState } from "../App/Store.ts";
 
 function Task(todo: AddType) {
   const dispatch = useDispatch();
   const added = () => toast("Marked As Completed");
-  const selectSearch = useSelector(
-    (state: RootState) => state.Add.searchResult
-  );
-
+  function handleDouble() {
+    dispatch(editValue(todo));
+  }
   return (
     <div
+      onDoubleClick={handleDouble}
       key={todo.id}
-      className="py-2 px-3 bg-[#C4BABA5E] backdrop-blur-lg rounded-full mt-2 mb-2 w-72 flex justify-between items-center"
+      className="py-2 px-3 bg-[#C4BABA5E] text-white backdrop-blur-lg rounded-full mt-2 mb-2 w-72 flex justify-between items-center"
     >
-      <p className={todo.isCompleted ? "line-through" : ""}>
-        {todo.value.toLowerCase()}
+      <p
+        className={
+          todo.isCompleted
+            ? "line-through max-w-[300px] overflow-hidden whitespace-nowrap text-ellipsis text-black"
+            : "max-w-[300px] overflow-hidden whitespace-nowrap text-ellipsis"
+        }
+      >
+        {todo.value.toLowerCase().trim()}
       </p>
 
       <div className="flex items-center space-x-3">

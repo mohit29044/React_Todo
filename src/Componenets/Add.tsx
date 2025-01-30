@@ -1,21 +1,35 @@
-import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { AddNew } from "../App/Slices/CRUD";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AddNew, submitUpdate } from "../App/Slices/CRUD";
 import { filter } from "../App/Slices/Filter";
 import { toast } from "react-toastify";
-
+import { RootState } from "../App/Store";
 function Add() {
   const userRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
+  const selectEditVal = useSelector((state: RootState) => state.Add.edit);
+  const [edit, setEdit] = useState("");
+
+  useEffect(() => {
+    if (selectEditVal) {
+      setEdit(selectEditVal?.value);
+    }
+  }, [selectEditVal]);
+
   function dropdownval(e: React.ChangeEvent<HTMLSelectElement>) {
     dispatch(filter(e.target.value));
   }
-
   function addTask() {
+    const trimedit = edit.trim();
+    if (trimedit && selectEditVal) {
+      dispatch(submitUpdate(edit));
+      setEdit("");
+      return;
+    }
     if (userRef.current && userRef.current.value) {
       const inputValue = userRef.current.value;
       userRef.current.value = "";
-      if (inputValue) {
+      if (inputValue.trim()) {
         dispatch(AddNew(inputValue));
         const add = () => toast("Added Successfully");
         add();
@@ -29,8 +43,10 @@ function Add() {
           type="text"
           name=""
           id=""
+          value={edit}
+          onChange={(e) => setEdit(e.target.value)}
           placeholder="Add New Task"
-          className="py-2 px-3 bg-[#C4BABA5E] backdrop-blur-lg rounded-full"
+          className="py-2 px-3 bg-[#C4BABA5E] text-white placeholder:text-white backdrop-blur-lg rounded-full"
           ref={userRef}
         />
       </div>
@@ -55,7 +71,7 @@ function Add() {
         <select
           name=""
           id="dropdown"
-          className="w-36 bg-[#C4BABA5E] backdrop-blur-lg text-gray-600 border-none rounded-md"
+          className="w-36 bg-[#C4BABA5E] backdrop-blur-lg text-white border-none rounded-md"
           onChange={dropdownval}
         >
           <option value="All" className="bg-[#C4BABA5E] backdrop-blur-lg p">

@@ -8,11 +8,17 @@ export interface AddType {
 }
 interface TodoState {
   todo: AddType[];
-  searchResult: AddType[];
+  searchResult: string;
+  edit: AddType | null;
 }
 const initialState: TodoState = {
   todo: [],
-  searchResult: [],
+  searchResult: "",
+  edit: {
+    id: 1,
+    isCompleted: false,
+    value: "",
+  },
 };
 
 export const AddSlice = createSlice({
@@ -39,11 +45,26 @@ export const AddSlice = createSlice({
       }
     },
     searchTodo: (state, action: PayloadAction<string>) => {
-      state.searchResult = state.todo.filter(
-        (todo) => todo.value.toLowerCase() === action.payload.toLowerCase()
-      );
+      state.searchResult = action.payload;
+    },
+    editValue: (state, action: PayloadAction<AddType>) => {
+      state.edit = action.payload;
+    },
+    submitUpdate: (state, action: PayloadAction<string>) => {
+      const todo = state.todo.find((todo) => todo.id === state.edit?.id);
+      if (todo) {
+        todo.value = action.payload;
+      }
+      state.edit = null;
     },
   },
 });
-export const { AddNew, Delete, showStatus, searchTodo } = AddSlice.actions;
+export const {
+  AddNew,
+  Delete,
+  showStatus,
+  searchTodo,
+  editValue,
+  submitUpdate,
+} = AddSlice.actions;
 export default AddSlice.reducer;
